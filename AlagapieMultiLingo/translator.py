@@ -34,7 +34,7 @@ def translate(input_language, output_language, input_text):
     return response.content
 
 
-st.title("🌐 Alagapie MultiLingo")
+st.write("## 🌐 Alagapie MultiLingo ")
 
 # Initialize chat session in Streamlit if not already present
 if 'translation_chat_history' not in st.session_state:
