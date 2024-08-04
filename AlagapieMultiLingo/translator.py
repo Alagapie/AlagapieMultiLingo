@@ -4,7 +4,7 @@ from langchain_core.prompts import ChatPromptTemplate
 import streamlit as st
 
 st.set_page_config(
-    page_icon=":globe:",
+    page_icon="globe",
     page_title="Alagapie Translator app",
     layout="centered"
 )
