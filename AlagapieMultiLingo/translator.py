@@ -1,5 +1,4 @@
-import os
-import google.generativeai as genai
+
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 import streamlit as st
@@ -9,8 +8,8 @@ st.set_page_config(
     page_title="Alagapie Translator app",
     layout="centered"
 )
-
-model=ChatGoogleGenerativeAI(model="gemini-1.5-flash",temperature=0.9)
+api_key = st.secrets["general"]["GOOGLE_API_KEY"]
+model=ChatGoogleGenerativeAI(model="gemini-1.5-flash",temperature=0.9,google_api_key=api_key)
 
 def generate_promp(chat_history, input_language, output_language, input_text):
     messages = [
@@ -62,7 +61,9 @@ if input_text:
        st.session_state.translation_chat_history.append(("human", input_text))
     
     # Perform translation
-       translation = translate(input_language, output_language, input_text)
+       with st.spinner("Translating..."):
+                # Perform translation
+                translation = translate(input_language, output_language, input_text)
     
     # Add translation result to chat history
        st.session_state.translation_chat_history.append(("assistant", translation))
